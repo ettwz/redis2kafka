@@ -12,10 +12,7 @@ public class PubSubTestMain {
 
 	@RequestMapping(value = "cli")
 	public String cli() throws InterruptedException {
-		PubClient pubClient = new PubClient(Constants.host, Constants.port);
 		final String channel = "test";
-		pubClient.pub(channel, "before1");
-		pubClient.pub(channel, "before2");
 		Thread.sleep(2000);
 		//消息订阅着非常特殊，需要独占链接，因此我们需要为它创建新的链接；
 		//此外，jedis客户端的实现也保证了“链接独占”的特性，sub方法将一直阻塞，
@@ -37,18 +34,7 @@ public class PubSubTestMain {
 			}
 		});
 		subThread.start();
-//		int i=0;
-//		while(i < 10){
-//			String message = RandomStringUtils.random(6, true, true);//apache-commons
-//			pubClient.pub(channel, message);
-//			i++;
-//			Thread.sleep(1000);
-//		}
-		//被动关闭指示，如果通道中，消息发布者确定通道需要关闭，那么就发送一个“quit”
-		//那么在listener.onMessage()中接收到“quit”时，其他订阅client将执行“unsubscribe”操作。
-		pubClient.close(channel);
-		//此外，你还可以这样取消订阅
-		//listener.unsubscribe(channel);
+
 		subThread.interrupt();
 
 		return "subclient open";
