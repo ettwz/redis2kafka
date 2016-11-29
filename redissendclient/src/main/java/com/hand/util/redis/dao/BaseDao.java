@@ -1,13 +1,10 @@
 package com.hand.util.redis.dao;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.util.*;
 
 import javax.annotation.Resource;
 
-import com.hand.redis.PubClient;
+import com.hand.util.redis.Field.PubClient;
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,7 +12,6 @@ import org.springframework.data.redis.connection.RedisZSetCommands;
 import org.springframework.data.redis.core.BoundHashOperations;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hand.util.json.JsonMapper;
 import com.hand.util.redis.Field.FieldDescriptor;
 import com.hand.util.redis.Field.FieldType;
@@ -24,7 +20,6 @@ import com.hand.util.redis.Field.FieldType;
  * Created by DongFan on 2016/11/15.
  */
 public abstract class BaseDao {
-    Properties p=new Properties();
 
     @Resource(name = "pubClient")
     protected PubClient pubClient;
@@ -75,11 +70,12 @@ public abstract class BaseDao {
         String id = getIdValue(map);
         String pattern = createPattern();
         String json = jsonMapper.convertToJson(map);
-        pubClient.pub(channel, "add"+map);
+
         //将新增的数据插入到redis Hash中
         redisTemplate.opsForHash().put(pattern, id, json);
+        pubClient.pub(channel, "add|"+map);
         logger.debug("insert into " + pattern + "1 record");
-
+//this.hashTag
         //遍历对象需要进行搜索的字段
         fieldDescriptorMap.forEach((name, field) -> {
             String key;
@@ -93,6 +89,7 @@ public abstract class BaseDao {
                     case FieldType.TYPE_EQUAL:
                         key = createPattern(name, value);
                         redisTemplate.boundSetOps(key).add(id);
+//                        pubClient.pub(channel, "add|"+id);
                         logger.debug("insert into " + key + "1 record" + idDescriptor.getName() + "is：" + id);
                         break;
                     case FieldType.TYPE_MATCH:
@@ -142,6 +139,7 @@ public abstract class BaseDao {
         if (old != null) {
             //根据id删除对应redis Hash中的对象
             redisTemplate.boundHashOps(idHashKey).delete(id);
+//            pubClient.pub(channel, "del|"+id);
             logger.debug("delete from " + idHashKey + " by id:" + id + ",delete 1 record");
 
             //遍历对象所需分类查询的字段，将其对应的id删除

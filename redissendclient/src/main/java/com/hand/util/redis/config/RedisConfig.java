@@ -2,7 +2,7 @@ package com.hand.util.redis.config;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hand.redis.PubClient;
+import com.hand.util.redis.Field.PubClient;
 import com.hand.util.json.JsonMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;

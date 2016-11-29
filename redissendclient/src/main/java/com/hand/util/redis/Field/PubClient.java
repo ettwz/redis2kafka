@@ -1,4 +1,4 @@
-package com.hand.redis;
+package com.hand.util.redis.Field;
 
 import redis.clients.jedis.Jedis;
 
@@ -16,12 +16,6 @@ public class PubClient {
 	public void close(String channel){
 		jedis.publish(channel, "quit");
 		jedis.del(channel);//
-	}
-	
-	public void test(){
-		jedis.set("pub-block", "15");
-		String tmp = jedis.get("pub-block");
-		System.out.println("TEST:" + tmp);
 	}
 
 
