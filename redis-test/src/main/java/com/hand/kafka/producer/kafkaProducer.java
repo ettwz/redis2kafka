@@ -12,13 +12,8 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 
 public class kafkaProducer {
 
-    public static void main(String[] args) throws Exception{
+    public void kp(String message){
 
-        // Check arguments length value
-//        if(args.length == 0){
-//            System.out.println("Enter topic name");
-//            return;
-//        }
 
         //Assign topicName to string variable
         String topicName = "test5";
@@ -50,11 +45,10 @@ public class kafkaProducer {
 
         Producer<String, String> producer = new KafkaProducer<String, String> (props);
 
-        for(int i = 0; i < 10; i++)
-            producer.send(new ProducerRecord<String, String>(topicName,
-                    Integer.toString(i), Integer.toString(i)));
+        producer.send(new ProducerRecord<String, String>(topicName,message,message));
         System.out.println("Message sent successfully");
         producer.close();
+
     }
 
 }
