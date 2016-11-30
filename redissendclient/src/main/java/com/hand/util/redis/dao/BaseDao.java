@@ -30,7 +30,7 @@ public abstract class BaseDao {
     @Resource(name = "jsonMapper")
     protected JsonMapper jsonMapper;
 
-    final String channel = "pubsub-channel";
+    final String channel = "test";
     protected String mime = "ooooooossssss";
 
     protected String hashTag = "";
@@ -73,7 +73,8 @@ public abstract class BaseDao {
 
         //将新增的数据插入到redis Hash中
         redisTemplate.opsForHash().put(pattern, id, json);
-        pubClient.pub(channel, "add|"+map);
+        pubClient.pub(channel, "add|"+clazz+"|"+map);
+
         logger.debug("insert into " + pattern + "1 record");
 //this.hashTag
         //遍历对象需要进行搜索的字段
