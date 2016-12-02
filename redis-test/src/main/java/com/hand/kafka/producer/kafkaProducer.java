@@ -16,7 +16,7 @@ public class kafkaProducer {
 
 
         //Assign topicName to string variable
-        String topicName = "test5";
+        String topicName = "test7";
 
         // create instance for properties to access producer configs
         Properties props = new Properties();

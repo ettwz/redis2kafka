@@ -73,7 +73,7 @@ public abstract class BaseDao {
 
         //将新增的数据插入到redis Hash中
         redisTemplate.opsForHash().put(pattern, id, json);
-        pubClient.pub(channel, "add|"+clazz+"|"+map);
+        pubClient.pub(channel, "add|"+map);
 
         logger.debug("insert into " + pattern + "1 record");
 //this.hashTag
@@ -140,7 +140,7 @@ public abstract class BaseDao {
         if (old != null) {
             //根据id删除对应redis Hash中的对象
             redisTemplate.boundHashOps(idHashKey).delete(id);
-//            pubClient.pub(channel, "del|"+id);
+            pubClient.pub(channel, "del|"+id);
             logger.debug("delete from " + idHashKey + " by id:" + id + ",delete 1 record");
 
             //遍历对象所需分类查询的字段，将其对应的id删除
@@ -191,6 +191,8 @@ public abstract class BaseDao {
 
         //根据id更新redis Hash对象
         redisTemplate.boundHashOps(pattern).put(id, json);
+        pubClient.pub(channel, "up|"+map);
+        //clazz oracle对接也许需要
         logger.debug("update from " + pattern + " by id:" + id + " ,update 1 record");
 
         //当操作确实为更新操作时，删除原来旧字段所在的索引Set对应的id的值，将更新后的字段与id插入新的索引Set中

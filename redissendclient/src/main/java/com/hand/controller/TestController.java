@@ -79,7 +79,7 @@ public class TestController {
 //        staff1.setAge(21);
 
         HashMap<String,Object> staff1 = new HashMap<>();
-        staff1.put("id",1L);
+        staff1.put("id",22L);
         staff1.put("name","Alan");
         staff1.put("dept","DEV");
         staff1.put("type","NORMAL");
@@ -94,7 +94,7 @@ public class TestController {
 //        staff2.setAge(22);
 
         HashMap<String,Object> staff2 = new HashMap<>();
-        staff2.put("id",2L);
+        staff2.put("id",33L);
         staff2.put("name","Bob");
         staff2.put("dept","DEV");
         staff2.put("type","NORMAL");
@@ -108,7 +108,7 @@ public class TestController {
 //        staff3.setAge(23);
 
         HashMap<String,Object> staff3 = new HashMap<>();
-        staff3.put("id",3L);
+        staff3.put("id",44L);
         staff3.put("name","Candy");
         staff3.put("dept","HR");
         staff3.put("type","NORMAL");
@@ -122,7 +122,7 @@ public class TestController {
 //        staff4.setAge(24);
 
         HashMap<String,Object> staff4 = new HashMap<>();
-        staff4.put("id",4L);
+        staff4.put("id",55L);
         staff4.put("name","Andy");
         staff4.put("dept","HR");
         staff4.put("type","PRAC");
@@ -136,7 +136,7 @@ public class TestController {
 //        staff5.setAge(27);
 
         HashMap<String,Object> staff5 = new HashMap<>();
-        staff5.put("id",5L);
+        staff5.put("id",66L);
         staff5.put("name","Anddd");
         staff5.put("dept","MA");
         staff5.put("type","ALL");
@@ -151,8 +151,8 @@ public class TestController {
 //        staff6.setAge(29);
 
         HashMap<String,Object> staff6 = new HashMap<>();
-        staff6.put("id",6L);
-        staff6.put("name","张三");
+        staff6.put("id",77L);
+        staff6.put("name","张1111111");
         staff6.put("dept","MA");
         staff6.put("type","ALL");
         staff6.put("age",29);
@@ -165,8 +165,8 @@ public class TestController {
 //        staff7.setAge(30);
 
         HashMap<String,Object> staff7 = new HashMap<>();
-        staff7.put("id",7L);
-        staff7.put("name","张二");
+        staff7.put("id",88L);
+        staff7.put("name","张2222222");
         staff7.put("dept","MA");
         staff7.put("type","ALL");
         staff7.put("age",30);
@@ -180,8 +180,8 @@ public class TestController {
 
 
         HashMap<String,Object> staff8 = new HashMap<>();
-        staff8.put("id",8L);
-        staff8.put("name","张一");
+        staff8.put("id",99L);
+        staff8.put("name","张3333333");
         staff8.put("dept","MA");
         staff8.put("type","ALL");
         staff8.put("age",30);

@@ -17,6 +17,8 @@ public class PrintListener extends JedisPubSub{
 			new Thread(){
 				@Override
 				public void run() {
+
+
 					kafkaProducer kafkaproduce = new kafkaProducer();
 					kafkaproduce.kp(message);
 				}
