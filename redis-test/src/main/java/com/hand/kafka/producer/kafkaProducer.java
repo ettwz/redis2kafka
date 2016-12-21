@@ -16,13 +16,13 @@ public class kafkaProducer {
 
 
         //Assign topicName to string variable
-        String topicName = "test7";
+        String topicName = "test1";
 
         // create instance for properties to access producer configs
         Properties props = new Properties();
 
         //Assign localhost id
-        props.put("bootstrap.servers", "localhost:9092");
+        props.put("bootstrap.servers", "172.20.1.19:9092");
 
         //Set acknowledgements for producer requests.
         props.put("acks", "all");
